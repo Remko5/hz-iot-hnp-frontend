@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ToolTextForm({OnSubmitForm}) {
     const [inputs, setInputs] = useState({});
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
       const name = event.target.name;
@@ -15,7 +16,7 @@ function ToolTextForm({OnSubmitForm}) {
       event.preventDefault();
       let result = {username: inputs.username, password: inputs.password}
       OnSubmitForm(result)
-      return redirect("/login");
+      return navigate("/login");
     }
   
     return (
