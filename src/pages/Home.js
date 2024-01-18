@@ -4,26 +4,31 @@ import "../styles.css";
 const Home = () => {
   // padding: top, right, bottom, left
 
+  const pageTitleStyle = {
+    padding: "60px 0px 0px 60px",
+  }
+
   const pageTextStyle = {
-    width: "500px",
+    width: "400px",
     padding: "0px 0px 0px 60px",
+    textWrap: "wrap",
   }
   
-  const buttonStyle = {
-    color: "rgba(255, 255, 255, 0.55)",
-    backgroundColor: "#212529",
-    borderColor: "#212529",
+  const buttonDivStyle = {
+    padding: "0px 0px 0px 60px",
   }
   
   return (
     <>
-      <div class="title">
-        <h1 style={{padding:"60px 60px 60px 60px"}}>Mensen op zoek naar menselijke behoeftes!</h1>
+      <div className="title">
+        <h1 style={pageTitleStyle}>Mensen op zoek naar menselijke behoeftes!</h1>
       </div>
-      <div class="page-text" style={pageTextStyle}>
+      <div className="page-text" style={pageTextStyle}>
         <p>Zet abstracte menselijke behoeftes om in objectieve nummers met onze online tool en breng je doelgroep in kaart aan de hand van het 6P-model.</p>
       </div>
-      <Button variant="dark">Probeer nu!</Button>
+      <div className="try-now-button" style={buttonDivStyle}>
+        <Button variant="dark" type="submit">Probeer nu!</Button>
+      </div>
     </>
     );
   };

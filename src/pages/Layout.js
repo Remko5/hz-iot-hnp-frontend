@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavbarBrand } from "react-bootstrap";
+import NavbarBrand from "react-bootstrap/NavbarBrand";
 
 const Layout = () => {
   
