@@ -16,7 +16,7 @@ const Layout = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/choosetool">Choose tool</Nav.Link>
+              <Nav.Link href="/tools">Choose tool</Nav.Link>
               <NavDropdown title="Admin" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/admin/register">Register</NavDropdown.Item>
                 <NavDropdown.Item href="/admin/manage-users">Manage users</NavDropdown.Item>

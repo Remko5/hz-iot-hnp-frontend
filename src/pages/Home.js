@@ -1,4 +1,5 @@
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import "../styles.css";
 
 const Home = () => {
@@ -27,7 +28,7 @@ const Home = () => {
         <p>Zet abstracte menselijke behoeftes om in objectieve nummers met onze online tool en breng je doelgroep in kaart aan de hand van het 6P-model.</p>
       </div>
       <div className="try-now-button" style={buttonDivStyle}>
-        <Button variant="dark" type="submit">Probeer nu!</Button>
+        <Link to="/tools"><Button variant="dark" type="submit">Probeer nu!</Button></Link>
       </div>
     </>
     );

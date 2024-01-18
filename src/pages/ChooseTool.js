@@ -1,4 +1,5 @@
 // import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import books from "./images/books.jpg";
 import characteristics from "./images/characteristics.png";
@@ -43,26 +44,32 @@ const ChooseTool = () => {
       <div className="tool-selector-wrapper" style={toolSelectorWrapperStyle}>
         <h2 style={{textAlign: "center"}}>Selecteer 6P-tool</h2>
         <div className="select-tool-button-wrapper" style={selectButtonWrapperStyle}>
-          <Card style={cardStyle}>
-            <Card.Body>
-              <Card.Title>Tekst</Card.Title>
-            </Card.Body>
-            <Card.Img variant="bottom" src={books} style={imageStyle} />
-          </Card>
+          <Link to="/tools/text">
+            <Card style={cardStyle}>
+              <Card.Body>
+                <Card.Title>Tekst</Card.Title>
+              </Card.Body>
+              <Card.Img variant="bottom" src={books} style={imageStyle} />
+            </Card>
+          </Link>
 
-          <Card style={cardStyle}>
-            <Card.Body>
-              <Card.Title>Beelden</Card.Title>
-            </Card.Body>
-            <Card.Img variant="bottom" src={dog} style={imageStyle} />
-          </Card>
+          <Link to="/tools/image">
+            <Card style={cardStyle}>
+              <Card.Body>
+                <Card.Title>Beelden</Card.Title>
+              </Card.Body>
+              <Card.Img variant="bottom" src={dog} style={imageStyle} />
+            </Card>
+          </Link>
 
-          <Card style={cardStyle}>
-            <Card.Body>
-              <Card.Title>Eigenschappen</Card.Title>
-            </Card.Body>
-            <Card.Img variant="bottom" src={characteristics} style={imageStyle} />
-          </Card>
+          <Link to="/tools/characteristics">
+            <Card style={cardStyle}>
+              <Card.Body>
+                <Card.Title>Eigenschappen</Card.Title>
+              </Card.Body>
+              <Card.Img variant="bottom" src={characteristics} style={imageStyle} />
+            </Card>
+          </Link>
         </div>
       </div>
     </>
