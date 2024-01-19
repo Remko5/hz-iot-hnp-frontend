@@ -11,13 +11,13 @@ const Register = () => {
     borderRadius: "5px",
     color: "lightgray",
     backgroundColor: "#474748",
-  }
+  };
 
   const buttonStyle = {
     width: "40%",
     margin: "0% 30% 0% 30%",
     borderColor: "white",
-  }
+  };
   
   return (
     <>

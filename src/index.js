@@ -11,6 +11,7 @@ import ManageUsers from "./pages/ManageUsers";
 import NoPage from "./pages/NoPage";
 import Register from "./pages/Register";
 import TextTool from "./pages/TextTool";
+import ToolResult from "./pages/ToolResult";
 import "./styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="tools/text" element={<TextTool />} />
           <Route path="tools/image" element={<ImageTool />} />
           <Route path="tools/characteristics" element={<CharacteristicsTool />} />
+          <Route path="tools/results" element={<ToolResult />} />
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NoPage />} />
         </Route>
