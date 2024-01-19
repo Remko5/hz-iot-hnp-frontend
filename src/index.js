@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Admin from "./pages/Admin";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { useState } from 'react';
+import Admin from "./pages/admin/Admin";
 import CharacteristicsTool from "./pages/CharacteristicsTool";
 import ChooseTool from "./pages/ChooseTool";
 import Home from "./pages/Home";
