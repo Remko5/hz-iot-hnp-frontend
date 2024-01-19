@@ -16,6 +16,13 @@ import "./styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
+  const [results, setResults] = useState({"username": null, "password": null})
+
+  function handleResults(results) {
+    console.log("setting results")
+    setResults(results)
+  }
+
   return (
     <BrowserRouter>
       <Routes>
