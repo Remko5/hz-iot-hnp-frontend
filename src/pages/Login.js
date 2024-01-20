@@ -1,18 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Error from "./Error";
+import { useNavigate } from "react-router-dom";
+import { IsNotLoggedInOrRedirect } from "../redirector";
 
 function Login({returnLoginToken, setIsLoggedIn, setIsAdmin}) {
+  IsNotLoggedInOrRedirect()
+
   const navigate = useNavigate();
-  let role = localStorage.getItem('role');
-  useEffect(() => {
-    if(role){
-      return navigate("/",{replace: true})
-    }
-  }, [role, navigate]);
-  
   const [inputs, setInputs] = useState({});
   const [showErrors, setShowErrors] = useState(false);
   const [errorObject, setErrorObject] = useState({});
@@ -74,7 +70,7 @@ function Login({returnLoginToken, setIsLoggedIn, setIsAdmin}) {
   return (
     <>
       <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
-        <Error errors={errorObject}></Error>
+        <Error errors={errorObject} />
       </span>
       <div className="login-wrapper" style={loginWrapperStyle}>
         <h2 style={{textAlign: "center"}}>Login</h2>

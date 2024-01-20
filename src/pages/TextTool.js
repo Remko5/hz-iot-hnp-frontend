@@ -1,18 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Error from "./Error";
+import { IsUserOrRedirect } from "../redirector";
 
 function TextTool({returnToolResult}) {
-  const navigate = useNavigate();
-  let role = localStorage.getItem('role');
-  useEffect(() => {
-    if(!role){
-      return navigate("/login",{replace: true})
-    }
-  }, [role, navigate]);
+  IsUserOrRedirect()
 
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
   const [showErrors, setShowErrors] = useState(false);
   const [errorObject, setErrorObject] = useState({});
@@ -39,7 +35,6 @@ function TextTool({returnToolResult}) {
         },
         body: works
     }).then((result) => {
-      console.log(result.status)
       if(!(result.status === 200)){
         result.json().then((error) => {
           setErrorObject(error)
@@ -73,7 +68,7 @@ function TextTool({returnToolResult}) {
   return (
     <>
       <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
-        <Error errors={errorObject}></Error>
+        <Error errors={errorObject} />
       </span>
       <div className="text-tool-wrapper" style={textToolWrapperStyle}>
         <h2 style={{textAlign: "center"}}>6P-Tekst-tool</h2>
