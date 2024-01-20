@@ -1,7 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useContext } from "react";
 
 const Register = () => {
+  
   const registerWrapperStyle = {
     width: "50vw",
     height: "50vh",

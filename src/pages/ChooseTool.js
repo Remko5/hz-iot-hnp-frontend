@@ -1,11 +1,20 @@
 // import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import books from "./images/books.jpg";
 import characteristics from "./images/characteristics.png";
 import dog from "./images/dog.jpg";
+import { useEffect } from "react";
 
 const ChooseTool = () => {
+  const navigate = useNavigate();
+  let role = localStorage.getItem('role');
+  useEffect(() => {
+    if(!role){
+      return navigate("/login",{replace: true})
+    }
+  }, [role, navigate]);
+
   const toolSelectorWrapperStyle = {
     width: "80vw",
     height: "50vh",
