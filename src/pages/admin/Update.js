@@ -1,20 +1,47 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { IsAdminOrRedirect } from "../../redirector";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Error from "../Error";
-import Message from "../Message";
 
-const Register = () => {
+const Update = () => {
   IsAdminOrRedirect()
 
   const navigate = useNavigate();
-  const [inputs, setInputs] = useState({});  
+  const [inputs, setInputs] = useState({});
+  const [user, setUser] = useState({});  
   const [showErrors, setShowErrors] = useState(false);
   const [errorObject, setErrorObject] = useState({});
-  const [showPasswordError, setShowPasswordError] = useState(false);
+  const { id } = useParams();
+  
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+
+    fetch('http://localhost:5000/admin/users/'+id, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                "Content-type": "application/json",
+                'X-API-TOKEN': token
+            },        
+        }).then((result) => {
+          if(!(result.status === 200)){
+            result.json().then((error) => {
+              setErrorObject(error)
+              setShowErrors(true)
+            })
+          } else{
+            result.json().then((json) => {
+                setUser(json)
+                setInputs({"email": json.email, "role": json.role})
+            })
+          }
+        })
+  }, [navigate, setErrorObject, setShowErrors, id]);
+
 
   const handleChange = (event) => {
       const name = event.target.name;
@@ -24,22 +51,17 @@ const Register = () => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      if(inputs.password !== inputs.password2){
-        setShowPasswordError(true);
-        return
+      
+      if(inputs.email === user.email && inputs.role === user.role){
+        return navigate("/admin/manage-users", {replace: true});
       }
+      
       setShowErrors(false);
-      setShowPasswordError(false);
       let token = localStorage.getItem('token');
-      if(inputs.role === undefined){
-        inputs.role = "USER";
-      }
-      let password2 = inputs.password2
-      delete inputs.password2
 
       let works = JSON.stringify(inputs);
-      fetch('http://localhost:5000/admin/users', {
-          method: 'POST',
+      fetch('http://localhost:5000/admin/users/'+id, {
+          method: 'PUT',
           mode: 'cors',
           credentials: 'same-origin',
           headers: {
@@ -50,7 +72,6 @@ const Register = () => {
       }).then((result) => {
         if(!(result.status === 200)){
           result.json().then((error) => {
-            inputs.password2 = password2
             setErrorObject(error)
             setShowErrors(true)
           })
@@ -82,33 +103,18 @@ const Register = () => {
       <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
         <Error errors={errorObject} />
       </span>
+      <h1>{id}</h1>
       <div className="register-wrapper" style={registerWrapperStyle}>
         <h2 style={{textAlign: "center"}}>Registreren</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email adres</Form.Label>
-            <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleChange} />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Wachtwoord</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Enter password" onChange={handleChange} />
-            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px" }}>
-              <Message message={["Wachtwoorden komen niet overeen"]} />
-            </span>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Wachtwoord opnieuw</Form.Label>
-            <Form.Control type="password" name="password2" placeholder="Enter password" onChange={handleChange} />
-            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px" }}>
-              <Message message={["Wachtwoorden komen niet overeen"]} />
-            </span>
+            <Form.Control type="email" name="email" placeholder="Enter email" defaultValue={inputs.email} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicRole">
             <Form.Label>Rol</Form.Label>
-            <Form.Select name="role" onChange={handleChange}>
+            <Form.Select name="role" value={inputs.role} onChange={handleChange}>
               <option value="USER">Gebruiker</option>
               <option value="ADMIN">Admin</option>
             </Form.Select>
@@ -121,4 +127,4 @@ const Register = () => {
     );
   };
   
-  export default Register;
+  export default Update;

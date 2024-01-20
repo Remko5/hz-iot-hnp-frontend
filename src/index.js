@@ -10,6 +10,7 @@ import Logout from "./pages/Logout";
 import ManageUsers from "./pages/admin/ManageUsers";
 import NoPage from "./pages/NoPage";
 import Register from "./pages/admin/Register";
+import Update from "./pages/admin/Update";
 import TextTool from "./pages/TextTool";
 import "./styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -41,6 +42,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="admin/register" element={<Register />} />
           <Route path="admin/manage-users" element={<ManageUsers />} />
+          <Route path="admin/update/:id" element={<Update />} />
           <Route path="tools" element={<ChooseTool />} />
           <Route path="tools/text" element={<TextTool returnToolResult={setToolResult} />} />
           <Route path="tools/image" element={<ImageTool />} />

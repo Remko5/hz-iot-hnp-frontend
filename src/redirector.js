@@ -36,3 +36,14 @@ export function IsAdminOrRedirect() {
       }, [navigate]);
     return(<></>)
 }
+
+export function IsAdmin(){
+    let role = localStorage.getItem('role');
+        if(!role){
+            return false
+        }
+        if(role !== "ADMIN"){
+            return false
+        }
+        return(<></>)
+}
