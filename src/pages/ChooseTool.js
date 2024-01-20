@@ -4,8 +4,11 @@ import Card from "react-bootstrap/Card";
 import books from "./images/books.jpg";
 import characteristics from "./images/characteristics.png";
 import dog from "./images/dog.jpg";
+import { IsUserOrRedirect } from "../redirector";
 
 const ChooseTool = () => {
+  IsUserOrRedirect()
+
   const toolSelectorWrapperStyle = {
     width: "80vw",
     height: "50vh",

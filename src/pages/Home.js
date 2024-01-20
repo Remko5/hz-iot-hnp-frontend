@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "../styles.css";
 
 const Home = () => {
+  
+
   // padding: top, right, bottom, left
 
   const pageTitleStyle = {
@@ -32,6 +34,6 @@ const Home = () => {
       </div>
     </>
     );
-  };
+}
   
   export default Home;
