@@ -93,7 +93,7 @@ const Register = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Wachtwoord</Form.Label>
             <Form.Control type="password" name="password" placeholder="Enter password" onChange={handleChange} />
-            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px" }}>
+            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px", color: "red" }}>
               <Message message={["Wachtwoorden komen niet overeen"]} />
             </span>
           </Form.Group>
@@ -101,7 +101,7 @@ const Register = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Label>Wachtwoord opnieuw</Form.Label>
             <Form.Control type="password" name="password2" placeholder="Enter password" onChange={handleChange} />
-            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px" }}>
+            <span style={{ display: showPasswordError ? "inline" : "none", minHeight: showErrors ? "100%" : "0px", minWidth: showErrors ? "100%" : "0px", color: "red" }}>
               <Message message={["Wachtwoorden komen niet overeen"]} />
             </span>
           </Form.Group>
