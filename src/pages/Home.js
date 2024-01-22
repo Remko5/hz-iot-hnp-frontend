@@ -30,7 +30,7 @@ const Home = () => {
         <p>Zet abstracte menselijke behoeftes om in objectieve nummers met onze online tool en breng je doelgroep in kaart aan de hand van het 6P-model.</p>
       </div>
       <div className="try-now-button" style={buttonDivStyle}>
-        <Link to="/tools"><Button variant="dark" type="submit">Probeer nu!</Button></Link>
+        <Link to="/tools"><Button variant="dark" type="submit" style={{width: "300px"}}>Probeer nu!</Button></Link>
       </div>
     </>
     );

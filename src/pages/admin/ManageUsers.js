@@ -3,6 +3,7 @@ import { IsAdminOrRedirect } from "../../redirector";
 import Error from "../Error";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 
 function ManageUsers() {
   IsAdminOrRedirect()
@@ -58,23 +59,57 @@ function ManageUsers() {
           } else{
             result.json().then((json) => {
               let array = []
-              array.push(<div key={-1}><span>Email</span><span>Role</span><span>Created At</span><span>Updated At</span></div>)
               json.forEach(element => {
-                array.push(<div key={element.id}><span onClick={() => navigate("/admin/update/"+element.id)}><span>{element.email}</span><span>{element.role}</span><span>{element.created_at}</span><span>{element.updated_at}</span></span><span onClick={() => deleteAccount(element.id)}>Delete Account</span></div>)
+                array.push(
+                  <tr>
+                    <td onClick={() => navigate("/admin/update/"+element.id)}>{element.id}</td>
+                    <td onClick={() => navigate("/admin/update/"+element.id)}>{element.email}</td>
+                    <td onClick={() => navigate("/admin/update/"+element.id)}>{element.role}</td>
+                    <td onClick={() => navigate("/admin/update/"+element.id)}>{element.created_at}</td>
+                    <td onClick={() => navigate("/admin/update/"+element.id)}>{element.updated_at}</td>
+                    <td onClick={() => deleteAccount(element.id)}>Delete</td>
+                  </tr>
+                );
               });
               setUsers(array)
             })
           }
         })
   }, [navigate, setErrorObject, setShowErrors, users, setUsers]);
-    
+  
+  const manageUsersWrapperStyle = {
+    width: "70vw",
+    margin: "6vw 0vw 0vw 15vw",
+    padding: "1vw 0vw 0vw 0vw",
+    border: "2px solid black",
+    borderRadius: "5px",
+    color: "lightgray",
+    backgroundColor: "#474748",
+  }
+
   return (
       <>
-        <h1>Manage Users</h1>
         <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
           <Error errors={errorObject} />
         </span>
-        {users}
+        <div className="manage-users-wrapper" style={manageUsersWrapperStyle}>
+          <h2 style={{textAlign: "center"}}>Manage Users</h2>
+          <Table variant="dark" striped bordered hover style={{width: "96%", marginLeft: "2%"}}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users}
+            </tbody>
+          </Table>
+        </div>
       </>
   );
 }

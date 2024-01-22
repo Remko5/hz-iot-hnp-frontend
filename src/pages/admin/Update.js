@@ -84,8 +84,8 @@ const Update = () => {
   const registerWrapperStyle = {
     width: "50vw",
     height: "60vh",
-    padding: "4vw 2vw 0vw 2vw",
-    margin: "10vw 0vw 0vw 25vw",
+    padding: "1vw 2vw 0vw 2vw",
+    margin: "6vw 0vw 0vw 25vw",
     border: "2px solid black",
     borderRadius: "5px",
     color: "lightgray",
@@ -103,9 +103,9 @@ const Update = () => {
       <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
         <Error errors={errorObject} />
       </span>
-      <h1>{id}</h1>
       <div className="register-wrapper" style={registerWrapperStyle}>
-        <h2 style={{textAlign: "center"}}>Registreren</h2>
+        <h2 style={{textAlign: "center"}}>Gebruikers ID: {id}</h2>
+        <h2 style={{textAlign: "center"}}>Aanpassen</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email adres</Form.Label>
@@ -120,7 +120,7 @@ const Update = () => {
             </Form.Select>
           </Form.Group>
 
-          <Button variant="dark" type="submit" style={buttonStyle}>Registreer</Button>
+          <Button variant="dark" type="submit" style={buttonStyle}>Aanpassen</Button>
         </Form>
       </div>
     </>

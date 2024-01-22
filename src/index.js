@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
-import { useState } from 'react';
-import Admin from "./pages/admin/Admin";
+import { useState, useEffect } from 'react';
 import CharacteristicsTool from "./pages/CharacteristicsTool";
 import ChooseTool from "./pages/ChooseTool";
 import Home from "./pages/Home";
@@ -17,9 +16,6 @@ import TextTool from "./pages/TextTool";
 import ToolResult from "./pages/ToolResult";
 import "./styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import { useState, useEffect } from "react";
-import ToolResult from "./pages/ToolResult";
 
 export default function App() {
   const [toolResult, setToolResult] = useState({});

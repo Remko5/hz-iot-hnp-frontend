@@ -18,13 +18,23 @@ ChartJS.register(
   Legend
 );
 
-const ToolResult = () => {
+function ToolResult({results}) {
   const resultsWrapperStyle = {
     width: "70vw",
     height: "73vh",
     margin: "5vw 0vw 0vw 15vw",
     border: "2px solid black",
+    borderRadius: "5px",
   };
+
+  var aiResults = [
+    results['p1_certainty'],
+    results['p2_variation'],
+    results['p3_connection'],
+    results['p4_significance'],
+    results['p5_contribution'],
+    results['p6_growth']
+  ];
 
   // Data for chart
   const options = {
@@ -52,7 +62,7 @@ const ToolResult = () => {
       },
       {
         label: "AI waarden",
-        data: [43, 20, 16, 9, 4, 8], // TODO: waarden halen uit API-call
+        data: aiResults,
         backgroundColor: "rgba(47,47,48,0.55)",
       },
     ],
@@ -67,15 +77,5 @@ const ToolResult = () => {
     </>
   );
 };
-// import Message from "./Message";
-
-// function ToolResult({results}) {
-//   return (
-//     <>
-//       <h1>ToolResult</h1>
-//       <Message message={results} />
-//     </>
-//     );
-//   };
   
-//   export default ToolResult;
+  export default ToolResult;
