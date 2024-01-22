@@ -1,7 +1,55 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import Error from "./Error";
+import { useNavigate } from "react-router-dom";
+import { IsNotLoggedInOrRedirect } from "../redirector";
 
-const Login = () => {
+function Login({returnLoginToken, setIsLoggedIn, setIsAdmin}) {
+  IsNotLoggedInOrRedirect()
+
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({});
+  const [showErrors, setShowErrors] = useState(false);
+  const [errorObject, setErrorObject] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowErrors(false);
+    let works = JSON.stringify(inputs);
+    fetch('http://localhost:5000/login', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: works
+    }).then((result) => {
+      if(!(result.status === 200)){
+        result.json().then((error) => {
+          setErrorObject(error)
+          setShowErrors(true)
+        })
+      } else{
+        result.json().then((json) => {
+          returnLoginToken(json.auth_token, json.role)
+          setIsLoggedIn(true)
+          if(json.role === "ADMIN"){
+            setIsAdmin(true)
+          }
+          return navigate("/", {replace: true});
+        })
+      }
+    })
+  }
+  
   const loginWrapperStyle = {
     width: "50vw",
     height: "50vh",
@@ -21,17 +69,20 @@ const Login = () => {
   
   return (
     <>
+      <span style={{ visibility: showErrors ? "visible" : "hidden" }}>
+        <Error errors={errorObject} />
+      </span>
       <div className="login-wrapper" style={loginWrapperStyle}>
         <h2 style={{textAlign: "center"}}>Login</h2>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email adres</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Wachtwoord</Form.Label>
-            <Form.Control type="password" placeholder="Enter password" />
+            <Form.Control type="password" name="password" placeholder="Enter password" onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">

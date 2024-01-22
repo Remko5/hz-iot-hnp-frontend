@@ -65,7 +65,17 @@ const ToolResult = () => {
         <Bar options={options} data={data} style={{marginLeft: "2.5%"}} />
       </div>
     </>
-    );
-  };
+  );
+};
+// import Message from "./Message";
+
+// function ToolResult({results}) {
+//   return (
+//     <>
+//       <h1>ToolResult</h1>
+//       <Message message={results} />
+//     </>
+//     );
+//   };
   
-  export default ToolResult;
+//   export default ToolResult;
