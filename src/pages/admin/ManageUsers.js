@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
-function ManageUsers() {
+function ManageUsers({hasInfo, setHasInfo}) {
   IsAdminOrRedirect()
 
   const navigate = useNavigate();
@@ -38,11 +38,12 @@ function ManageUsers() {
             } else{
               let array = users.pop()
               setUsers(array)
+              setHasInfo(false)
             }
           })
     }
-
-    fetch('http://localhost:5000/admin/users', {
+    if(!hasInfo){
+      fetch('http://localhost:5000/admin/users', {
             method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
@@ -72,10 +73,14 @@ function ManageUsers() {
                 );
               });
               setUsers(array)
+              setHasInfo(true)
             })
           }
         })
-  }, [navigate, setErrorObject, setShowErrors, users, setUsers]);
+    }
+
+    
+  }, [navigate, setErrorObject, setShowErrors, users, setUsers, hasInfo, setHasInfo]);
   
   const manageUsersWrapperStyle = {
     width: "70vw",

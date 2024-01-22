@@ -21,7 +21,8 @@ export default function App() {
   const [toolResult, setToolResult] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
- 
+  const [hasInfo, setHasInfo] = useState(false);
+
   useEffect(() => {
     let role = localStorage.getItem('role');
     if(role){
@@ -40,7 +41,7 @@ export default function App() {
         <Route path="/" element={<Layout isLoggedIn={isLoggedIn} isAdmin={isAdmin} />}>
           <Route index element={<Home />} />
           <Route path="admin/register" element={<Register />} />
-          <Route path="admin/manage-users" element={<ManageUsers />} />
+          <Route path="admin/manage-users" element={<ManageUsers hasInfo={hasInfo} setHasInfo={setHasInfo} />} />
           <Route path="admin/update/:id" element={<Update />} />
           <Route path="tools" element={<ChooseTool />} />
           <Route path="tools/text" element={<TextTool returnToolResult={setToolResult} />} />
