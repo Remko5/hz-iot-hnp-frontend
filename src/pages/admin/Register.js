@@ -63,7 +63,7 @@ const Register = () => {
   const registerWrapperStyle = {
     width: "50vw",
     height: "60vh",
-    padding: "4vw 2vw 0vw 2vw",
+    padding: "0vw 2vw 0vw 2vw",
     margin: "10vw 0vw 0vw 25vw",
     border: "2px solid black",
     borderRadius: "5px",

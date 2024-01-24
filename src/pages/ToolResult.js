@@ -21,7 +21,7 @@ ChartJS.register(
 function ToolResult({results}) {
   const resultsWrapperStyle = {
     width: "70vw",
-    height: "73vh",
+    height: "76vh",
     margin: "5vw 0vw 0vw 15vw",
     border: "2px solid black",
     borderRadius: "5px",
